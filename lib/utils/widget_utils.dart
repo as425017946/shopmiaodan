@@ -14,108 +14,7 @@ import 'style_utils.dart';
 
 ///组件工具类
 class WidgetUtils {
-  ///appbar 头部
-  static Widget getAppBar(
-      String title, bool isBack, BuildContext context, bool isCreate) {
-    return AppBar(
-      //标题居中
-      centerTitle: true,
-      leading: isBack == true
-          ? IconButton(
-              icon: WidgetUtils.showImages('assets/images/m_back.png',
-                  ConfigScreenUtil.autoHeight39, ConfigScreenUtil.autoWidth21),
-              onPressed: (() {
-                //如果loading正在显示，让其消失
-                Loading.dismiss();
-                Navigator.of(context).pop();
-              }),
-            )
-          : const Text(''),
-      actions: [
-        GestureDetector(
-          onTap: (() {
-            if (MyUtils.checkClick()) {}
-          }),
-          child: isCreate == true
-              ? GestureDetector(
-                  onTap: (() {}),
-                  child: Container(
-                    alignment: Alignment.centerRight,
-                    margin:
-                        EdgeInsets.only(right: ConfigScreenUtil.autoWidth30),
-                    child: Text(
-                      '注册',
-                      style: TextStyle(
-                          overflow: TextOverflow.ellipsis,
-                          fontFamily: "Normal",
-                          color: MyColors.ziYellow,
-                          fontSize: ScreenUtil().setSp(30)),
-                    ),
-                  ),
-                )
-              : Text(''),
-        )
-      ],
-      title: Text(
-        title,
-        style: TextStyle(
-            overflow: TextOverflow.ellipsis,
-            color: MyColors.ziYellow,
-            fontFamily: "Medium",
-            fontSize: ScreenUtil().setSp(30)),
-      ),
-      elevation: 0,
-      //去掉Appbar底部阴影
-      //背景颜色
-      backgroundColor: MyColors.bg,
-    );
-  }
 
-  static Widget getTitleWidget(String title, bool isBack, BuildContext context,
-      bool isRight, String rightName) {
-    return Row(
-      children: [
-        GestureDetector(
-          onTap: (() {
-            MyUtils.hideKeyboard(context);
-            Navigator.pop(context);
-          }),
-          child: Row(
-            children: [
-              WidgetUtils.commonSizedBox(ConfigScreenUtil.autoHeight39, ConfigScreenUtil.autoWidth50),
-              WidgetUtils.showImages('assets/images/m_back.png',
-                  ConfigScreenUtil.autoHeight39, ConfigScreenUtil.autoWidth21)
-            ],
-          ),
-        ),
-        Expanded(
-            child: WidgetUtils.onlyTextCenter(
-                title,
-                StyleUtils.getCommonTextStyle(
-                    color: MyColors.ziYellow,
-                    fontFamily: MyConfig.mMedium,
-                    fontSize: ConfigScreenUtil.autoSize30))),
-        GestureDetector(
-          onTap: (() {
-            if (MyUtils.compare(title, '登录') == 0) {
-              eventBus.fire(HeadBack(isBack: true, index: 1));
-            }
-            if (MyUtils.compare(title, '地址簿') == 0) {
-              eventBus.fire(HeadBack(isBack: true, index: 2));
-            }
-          }),
-          child: Text(
-            rightName,
-            style: StyleUtils.getCommonTextStyle(
-                color: MyColors.ziYellow,
-                fontFamily: MyConfig.mMedium,
-                fontSize: ConfigScreenUtil.autoSize30),
-          ),
-        ),
-        WidgetUtils.commonSizedBox(0, ConfigScreenUtil.autoWidth45),
-      ],
-    );
-  }
 
   ///登录通用输入账号，密码
   static Widget commonLoginWidget(
@@ -183,7 +82,7 @@ class WidgetUtils {
       inputFormatters: [
         RegexFormatter(regex: MyUtils.regexFirstNotNull),
       ],
-      style: StyleUtils.getCommonTextStyle(color: MyColors.ziYellow, fontSize: ConfigScreenUtil.autoSize30),
+      style: StyleUtils.getCommonTextStyle(color: MyColors.m_black, fontSize: ConfigScreenUtil.autoSize30),
       onChanged: (value) {
 
       },
@@ -213,7 +112,7 @@ class WidgetUtils {
       ],
       keyboardType: TextInputType.number,
       //设置键盘为数字
-      style: StyleUtils.getCommonTextStyle(color: MyColors.ziYellow, fontSize: ConfigScreenUtil.autoSize30),
+      style: StyleUtils.getCommonTextStyle(color: MyColors.m_black, fontSize: ConfigScreenUtil.autoSize30),
       decoration: InputDecoration(
         border: InputBorder.none,
         // labelText: "请输入用户名",
@@ -235,16 +134,16 @@ class WidgetUtils {
       //边框设置
       decoration: BoxDecoration(
         //背景
-        color: MyColors.blue,
+        color: MyColors.m_blue,
         //设置四周圆角 角度 这里的角度应该为 父Container height 的一半
         borderRadius: const BorderRadius.all(Radius.circular(25.0)),
         //设置四周边框
-        border: Border.all(width: 1, color: MyColors.blue),
+        border: Border.all(width: 1, color: MyColors.m_blue),
       ),
       child: MaterialButton(
         minWidth: double.infinity,
         height: ConfigScreenUtil.autoHeight80,
-        splashColor: MyColors.blue,
+        splashColor: MyColors.m_blue,
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(25)),
         ),
@@ -269,16 +168,16 @@ class WidgetUtils {
       //边框设置
       decoration: BoxDecoration(
         //背景
-        color: MyColors.blue,
+        color: MyColors.m_blue,
         //设置四周圆角 角度 这里的角度应该为 父Container height 的一半
         borderRadius: const BorderRadius.all(Radius.circular(25.0)),
         //设置四周边框
-        border: Border.all(width: 1, color: MyColors.blue),
+        border: Border.all(width: 1, color: MyColors.m_blue),
       ),
       child: MaterialButton(
         minWidth: double.infinity,
         height: ConfigScreenUtil.autoHeight80,
-        splashColor: MyColors.blue,
+        splashColor: MyColors.m_blue,
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(25)),
         ),
@@ -367,10 +266,10 @@ class WidgetUtils {
   }
 
   ///背景色
-  static Widget bgLine(double height) {
+  static Widget bgLine(double height,double width) {
     return Container(
       height: height,
-      width: double.infinity,
+      width: width,
       decoration: const BoxDecoration(
         color: MyColors.f5,
       ),
@@ -379,27 +278,24 @@ class WidgetUtils {
   }
 
   ///带边框的发布按钮
-  static Widget issueButton(String title, Color boxColors, Color borderColors,
-      Color txtColors, bool isClick, int type) {
-    return GestureDetector(
-      onTap: (() {}),
-      child: Container(
-        width: ScreenUtil().setWidth(180),
-        height: ScreenUtil().setHeight(50),
-        alignment: Alignment.center,
-        //边框设置
-        decoration: BoxDecoration(
-          //背景
-          color: boxColors,
-          //设置四周圆角 角度 这里的角度应该为 父Container height 的一半
-          borderRadius: const BorderRadius.all(Radius.circular(5.0)),
-          //设置四周边框
-          border: Border.all(width: 1, color: borderColors),
-        ),
-        child: Text(
-          title,
-          style: TextStyle(fontSize: ScreenUtil().setSp(30), color: txtColors),
-        ),
+  static Widget issueButton(double height, double width, String title, Color boxColors, Color borderColors,
+       bool isClick) {
+    return Container(
+      width: width,
+      height: height,
+      alignment: Alignment.center,
+      //边框设置
+      decoration: BoxDecoration(
+        //背景
+        color: isClick ? boxColors : MyColors.white,
+        //设置四周圆角 角度 这里的角度应该为 父Container height 的一半
+        borderRadius: const BorderRadius.all(Radius.circular(2.0)),
+        //设置四周边框
+        border: Border.all(width: 1, color: isClick ? borderColors : MyColors.m_bk),
+      ),
+      child: Text(
+        title,
+        style: TextStyle(fontSize: ScreenUtil().setSp(7), color: isClick ? MyColors.white : MyColors.m_a7),
       ),
     );
   }
@@ -562,15 +458,15 @@ class WidgetUtils {
       //边框设置
       decoration: BoxDecoration(
         //背景
-        color: isClick ? MyColors.ziYellow : MyColors.bg,
+        color: isClick ? MyColors.m_blue : MyColors.m_gray,
         //设置四周圆角 角度 这里的角度应该为 父Container height 的一半
         borderRadius: const BorderRadius.all(Radius.circular(10)),
-        border: Border.all(width: 1, color: MyColors.ziYellow),
+        border: Border.all(width: 1, color: MyColors.m_blue),
       ),
       child: Text(
         title,
         style: StyleUtils.getCommonTextStyle(
-            color: isClick ? MyColors.loginZiBlack : MyColors.ziYellow,
+            color: isClick ? MyColors.m_black : MyColors.m_blue,
             fontSize: ConfigScreenUtil.autoSize30),
       ),
     );

@@ -13,17 +13,12 @@ class StyleUtils {
 
   //登录提示文字样式
   static TextStyle loginHintTextStyle =
-      TextStyle(color: MyColors.g5, fontSize: ConfigScreenUtil.autoSize30);
+      TextStyle(color: MyColors.g5, fontSize: ConfigScreenUtil.autoSize7);
 
   //登录提示文字样式
   static TextStyle buttonTextStyle =
       TextStyle(color: Colors.white, fontSize: ConfigScreenUtil.autoSize36);
 
-  //蓝色的文字颜色
-  static TextStyle textStyleBlue = TextStyle(
-      color: MyColors.blue,
-      fontSize: ConfigScreenUtil.autoSize30,
-      overflow: TextOverflow.ellipsis);
 
   //g3文字样式
   static TextStyle textStyleG3 = TextStyle(
@@ -59,9 +54,15 @@ class StyleUtils {
   static TextStyle whiteTextStyle =
   TextStyle(color: Colors.white, fontSize: ConfigScreenUtil.autoSize24);
 
-  //黄色字体
-  static TextStyle yellowTextStyle =
-  TextStyle(color: MyColors.ziYellow, fontSize: ConfigScreenUtil.autoSize24);
+  //黑色字体7
+  static TextStyle blackTextStyle =
+  TextStyle(color: MyColors.m_d2, fontSize: ConfigScreenUtil.autoSize7);
+
+  static TextStyle blackTextStyle2 =
+  TextStyle(color: MyColors.m_d2, fontSize: ConfigScreenUtil.autoSize5);
+
+  static TextStyle blackTextStyle3 =
+  TextStyle(color: MyColors.m_d2, fontSize: ConfigScreenUtil.autoSize6);
 
   //白色线条框
   static BoxDecoration wihtieBgStyle = const BoxDecoration(

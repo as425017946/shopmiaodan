@@ -5,6 +5,8 @@ class ConfigScreenUtil{
   static final autoSize1 = ScreenUtil().setSp(1);
   static final autoSize2 = ScreenUtil().setSp(2);
   static final autoSize5 = ScreenUtil().setSp(5);
+  static final autoSize6 = ScreenUtil().setSp(6);
+  static final autoSize7 = ScreenUtil().setSp(7);
   static final autoSize10 = ScreenUtil().setSp(10);
   static final autoSize15 = ScreenUtil().setSp(15);
   static final autoSize18 = ScreenUtil().setSp(18);
